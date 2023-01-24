@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const pacienteSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     nombre: {
         type: String,
         required: true
@@ -46,11 +46,9 @@ const pacienteSchema = mongoose.Schema({
     }],
     fechanac:{
         type:Date,
-        required:true
     },
     edad:{
         type:Number,
-        required:true
     },
     preferencia: [{
         type:String
@@ -59,4 +57,4 @@ const pacienteSchema = mongoose.Schema({
 {timestamps: true}
 )
 
-module.exports = mongoose.model('Paciente', pacienteSchema)
+module.exports = mongoose.model('User', userSchema)

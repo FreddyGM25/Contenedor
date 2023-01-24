@@ -20,7 +20,7 @@ module.exports = async function (req, res) {
                 filePath: `${process.env.URLB}/serverimg/defaultimage.png`,
                 fileType: "image/png"
             },
-            rol: req.body.params
+            rol: req.body.rol
         });
         await user.save()
         const token = await TokenAssign(user)

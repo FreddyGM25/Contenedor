@@ -5,6 +5,7 @@ const { TokenAssign } = require('../../middleware/autentication')
 module.exports = async function (req, res) {
     const password = req.body.password
     const paciente = await pacienteSchema.findOne({ email: req.body.email })
+    if(paciente == null) return res.status(200).send({ response: "Error", message: "Esta cuenta no existe" })
     const isPasswordMatched = await bcrypt.compare(password, paciente.password)
     if (isPasswordMatched) {
         if (paciente.isActive == true) {

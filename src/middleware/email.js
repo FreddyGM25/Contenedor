@@ -3,7 +3,7 @@ require("dotenv").config()
 
 const mail = {
   user: 'freddyguetts@gmail.com',
-  pass: 'qcdmsxmjsbopnzww'
+  pass: 'wexktguowfpcflgc'
 }
 
 let transporter = nodemailer.createTransport({

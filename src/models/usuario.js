@@ -46,11 +46,9 @@ const pacienteSchema = mongoose.Schema({
     }],
     fechanac:{
         type:Date,
-        required:true
     },
     edad:{
         type:Number,
-        required:true
     },
     preferencia: [{
         type:String

@@ -9,7 +9,7 @@ const mainRoutes = require("./routes/mainRoutes")
 
 const app = express()
 app.use(cors({
-  origin: ["http://localhost:4200", "http://localhost:8888"],
+  origin: ["http://localhost:4200", "http://localhost:8888", "https://coralio.cmc-software.com"],
 }));
 app.use(cookieParser())
 app.use(bodyParser.json())

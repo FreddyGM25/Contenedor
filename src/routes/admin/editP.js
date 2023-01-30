@@ -1,7 +1,7 @@
 const userSchema = require('../../models/user')
 const bcrypt = require('bcryptjs')
-const { TokenVerify } = require('../../../middleware/autentication')
-const { verifyemail } = require('../../../middleware/verify')
+const { TokenVerify } = require('../../middleware/autentication')
+const { verifyemail } = require('../../middleware/verify')
 
 module.exports = async function (req, res) {
   const token = req.headers.authorization.split(' ').pop()

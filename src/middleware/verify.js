@@ -1,4 +1,4 @@
-const userSchema = require('../../models/user')
+const userSchema = require('../models/usuario')
 
 async function verifyemail(email) {
     const user = await userSchema.findOne({email: email})

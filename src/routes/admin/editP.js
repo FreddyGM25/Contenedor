@@ -1,4 +1,4 @@
-const userSchema = require('../../models/user')
+const userSchema = require('../../models/usuario')
 const bcrypt = require('bcryptjs')
 const { TokenVerify } = require('../../middleware/autentication')
 const { verifyemail } = require('../../middleware/verify')

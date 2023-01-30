@@ -1,6 +1,6 @@
-const userSchema = require('../../models/user')
+const userSchema = require('../../models/usuario')
 
-const { TokenVerify } = require('../../../middleware/autentication')
+const { TokenVerify } = require('../../middleware/autentication')
 
 module.exports = async function (req, res) {
     const token = req.headers.authorization.split(' ').pop()

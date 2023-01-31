@@ -11,11 +11,11 @@ router.post('/paciente/login', upload.none(), require('./paciente/loginPaciente'
 router.post('/terapeuta/login', upload.none(), require('./terapeutas/loginTerapeuta'))
 router.post('/register', upload.none(), require('./user/register'))
 
-router.post('/admin/createp', upload.none(), require('./admin/createP'))
-router.post('/admin/createt', upload.none(), require('./admin/createT'))
+router.post('/admin/createp', upload.none(), require('./admin/paciente/createP'))
+router.post('/admin/createt', upload.none(), require('./admin/terapeuta/createT'))
 
-router.put('/admin/editp', upload.none(), require('./admin/editP'))
-router.put('/admin/editt', upload.none(), require('./admin/editT'))
+router.put('/admin/editp', upload.none(), require('./admin/paciente/editP'))
+router.put('/admin/editt', upload.none(), require('./admin/terapeuta/editT'))
 
 router.delete('/admin/remove', upload.none(), require('./admin/remove'))
 

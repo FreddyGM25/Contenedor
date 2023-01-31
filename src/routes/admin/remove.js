@@ -8,7 +8,7 @@ module.exports = async function (req, res) {
         const tokenver = await TokenVerify(token)
         const admin = await userSchema.findById(tokenver._id)
         if (admin.rol == "admin") {
-            const result = await userSchema.remove({ email: req.params.email})
+            const result = await userSchema.remove({ email: req.body.email})
             if(result.deletedCount == 0) return res.status(200).send({ response: "Error", message: "Este usuario ya ha sido eliminado" })
             return res.status(200).send({ response: "Success", message: "Eliminado correctamente"})
         } else {

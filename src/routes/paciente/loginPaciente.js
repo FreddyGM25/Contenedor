@@ -12,12 +12,12 @@ module.exports = async function (req, res) {
             if (paciente.rol == "paciente") {
                 const token = await TokenAssign(paciente)
                 res.cookie('token', token, { httpOnly: true });
-                return res.status(200).send({ response: "Success", message: 'Inicio sesion', name: paciente.name, token: token })
+                return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: paciente.rol, token: token })
             }
             if(paciente.rol == "admin"){
                 const token = await TokenAssign(paciente)
                 res.cookie('token', token, { httpOnly: true });
-                return res.status(200).send({ response: "Success", message: 'Inicio sesion', name: paciente.name, token: token })
+                return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: paciente.rol, token: token })
             }
             return res.status(200).send({ response: "Error", message: 'Esta cuenta no pertenece a paciente' })
         } else {

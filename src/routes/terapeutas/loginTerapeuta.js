@@ -15,9 +15,9 @@ module.exports = async function (req, res) {
                 return res.status(200).send({ response: "Success", message: 'Inicio sesion', name: terapeuta.name, token: token })
             }
             if(terapeuta.rol == "admin"){
-                const token = await TokenAssign(paciente)
+                const token = await TokenAssign(terapeuta)
                 res.cookie('token', token, { httpOnly: true });
-                return res.status(200).send({ response: "Success", message: 'Inicio sesion', name: paciente.name, token: token })
+                return res.status(200).send({ response: "Success", message: 'Inicio sesion', name: terapeuta.name, token: token })
             }
             return res.status(200).send({ response: "Error", message: 'Esta cuenta no pertenece a terapeuta' })
         } else {

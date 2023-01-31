@@ -11,8 +11,12 @@ router.post('/paciente/login', upload.none(), require('./paciente/loginPaciente'
 router.post('/terapeuta/login', upload.none(), require('./terapeutas/loginTerapeuta'))
 router.post('/register', upload.none(), require('./user/register'))
 
-router.put('/admin/editp', require('./admin/editP'))
+router.post('/admin/createp', upload.none(), require('./admin/createP'))
+router.post('/admin/createt', upload.none(), require('./admin/createT'))
 
-router.delete('/admin/remove', require('./admin/remove'))
+router.put('/admin/editp', upload.none(), require('./admin/editP'))
+router.put('/admin/editt', upload.none(), require('./admin/editT'))
+
+router.delete('/admin/remove', upload.none(), require('./admin/remove'))
 
 module.exports = router

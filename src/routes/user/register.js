@@ -15,6 +15,7 @@ module.exports = async function (req, res) {
             email: req.body.email,
             password: req.body.password,
             isActive: false,
+            isFirst: true,
             imgpro: {
                 fileName: "defaultimage.png",
                 filePath: `${process.env.URLB}/serverimg/defaultimage.png`,

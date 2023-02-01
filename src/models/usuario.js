@@ -34,27 +34,51 @@ const userSchema = mongoose.Schema({
         }
     },
     rol: {
-        type:String,
-        required:true
+        type: String,
+        required: true
     },
     isActive: {
-        type:Boolean,
-        required:true
+        type: Boolean,
+        required: true
     },
-    especialidad:[{
-        type:String
-    }],
-    fechanac:{
-        type:Date,
+    isFirst: {
+        type: Boolean,
+        required: true
     },
-    edad:{
-        type:Number,
+    especialidad: {
+        type: String
+    },
+    fechanac: {
+        type: Date,
+    },
+    edad: {
+        type: Number,
     },
     preferencia: [{
-        type:String
-    }]
+        type: String
+    }],
+    telefono: {
+        type: Number
+    },
+    cedula: {
+        type: Number
+    },
+    descripcion: {
+        type: String
+    },
+    video: {
+        fileName: {
+            type: String,
+        },
+        filePath: {
+            type: String,
+        },
+        fileType: {
+            type: String,
+        }
+    }
 },
-{timestamps: true}
+    { timestamps: true }
 )
 
 module.exports = mongoose.model('User', userSchema)

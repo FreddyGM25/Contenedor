@@ -9,28 +9,19 @@ module.exports = async function (req, res) {
     const admin = await userSchema.findById(tokenver._id)
     if (admin.rol == "admin") {
       const user = await userSchema.findById(req.body.id)
-      if(user.rol != "paciente") return res.status(200).send({ response: "Error", message: "Este usuario no es paciente" })
-      if (req.body.password) {
-        const salt = await bcrypt.genSalt(10);
-        const hashPassword = await bcrypt.hash(req.body.password, salt);
-        req.body.password = hashPassword;
-        await userSchema.updateOne({ _id: user._id }, {
-          $set: {
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            email: req.body.email,
-            password: req.body.password
-          }
-        })
-      } else {
-        await userSchema.updateOne({ _id: user._id }, {
-          $set: {
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            email: req.body.email
-          }
-        })
+      if (user.rol != "paciente") return res.status(200).send({ response: "Error", message: "Este usuario no es paciente" })
+      if (user.email != req.body.email) {
+        const ver = await userSchema.findOne({ email: req.body.email })
+        if (ver != null) return res.status(200).send({ response: "Error", message: "Este email ya existe" })
       }
+      await userSchema.updateOne({ _id: user._id }, {
+        $set: {
+          nombre: req.body.nombre,
+          apellido: req.body.apellido,
+          email: req.body.email,
+          telefono: req.body.telefono
+        }
+      })
       return res.status(200).send({ response: "Success", message: "Cambios guardados correctamente" })
     } else {
       return res.status(200).send({ response: "Error", message: "Este es un usuario normal" })

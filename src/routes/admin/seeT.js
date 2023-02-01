@@ -1,4 +1,5 @@
 const userSchema = require('../../models/usuario')
+const { TokenVerify } = require('../../middleware/autentication')
 
 module.exports = async function (req, res) {
     const token = req.headers.authorization.split(' ').pop()
@@ -11,5 +12,7 @@ module.exports = async function (req, res) {
             .catch((error) => res.status(200).send({ response: "Error", message: error }));
     
         }
+    }else{
+        return res.status(200).send({ response: "Error", message: "Este es un usuario normal" })
     }
 }

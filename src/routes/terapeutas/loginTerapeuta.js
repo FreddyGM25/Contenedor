@@ -11,10 +11,18 @@ module.exports = async function (req, res) {
         if (terapeuta.isActive == true) {
             if (terapeuta.rol == "terapeuta") {
                 const token = await TokenAssign(terapeuta)
-                res.cookie('token', token, { httpOnly: true });
-                return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: terapeuta.rol, token: token })
+                res.cookie('token', token, { httpOnly: true })
+                if (terapeuta.isFirst == true) {
+                    await userSchema.updateOne({ _id: terapeuta._id }, {
+                        $set: {
+                            isFirst: false
+                        }
+                    })
+                    return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: terapeuta.rol, token: token, isFirst: true})
+                }
+                return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: terapeuta.rol, token: token, isFirst: false})
             }
-            if(terapeuta.rol == "admin"){
+            if (terapeuta.rol == "admin") {
                 const token = await TokenAssign(terapeuta)
                 res.cookie('token', token, { httpOnly: true });
                 return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: terapeuta.rol, token: token })

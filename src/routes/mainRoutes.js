@@ -15,8 +15,8 @@ router.post('/admin/createp', upload.none(), require('./admin/paciente/createP')
 router.post('/admin/createt', upload.none(), require('./admin/terapeuta/createT'))
 
 router.put('/admin/editp', upload.none(), require('./admin/paciente/editP'))
-router.put('/admin/editt', upload.none(), require('./admin/terapeuta/editT'))
+router.put('/admin/editt',  uploadFile('video').single('video'), require('./admin/terapeuta/editT'))
 
-router.delete('/admin/remove', upload.none(), require('./admin/remove'))
+router.delete('/admin/remove/:id', upload.none(), require('./admin/remove'))
 
 module.exports = router

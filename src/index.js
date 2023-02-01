@@ -16,6 +16,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/serverimg', express.static('src/images/serverimg'));
 app.use('/imagesprofile', express.static('src/images/imagesprofile'));
+app.use('/video', express.static('src/images/video'));
 
 const port = process.env.PORT || 9000
 

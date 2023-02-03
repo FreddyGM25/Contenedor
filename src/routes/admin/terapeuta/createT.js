@@ -18,8 +18,18 @@ module.exports = async function (req, res) {
                     nombre: req.body.nombre,
                     apellido: req.body.apellido,
                     email: req.body.email,
-                    password: req.body.password,
+                    password:req.body.password,
+                    telefono: req.body.telefono,
+                    cedula: req.body.cedula,
+                    especialidad: req.body.especialidad,
+                    descripcion: req.body.descripcion,
+                    video: {
+                        fileName: req.file.filename,
+                        filePath: `${process.env.URLB}/video/${req.file.filename}`,
+                        fileType: req.file.mimetype
+                    },
                     isActive: false,
+                    isFirst: true,
                     imgpro: {
                         fileName: "defaultimage.png",
                         filePath: `${process.env.URLB}/serverimg/defaultimage.png`,

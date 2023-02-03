@@ -8,7 +8,7 @@ module.exports = async function (req, res) {
     const tokenver = await TokenVerify(token)
     const admin = await userSchema.findById(tokenver._id)
     if (admin.rol == "admin") {
-      const user = await userSchema.findById(req.body.id)
+      const user = await userSchema.findById(req.params.id)
       if (user.rol != "paciente") return res.status(200).send({ response: "Error", message: "Este usuario no es paciente" })
       if (user.email != req.body.email) {
         const ver = await userSchema.findOne({ email: req.body.email })

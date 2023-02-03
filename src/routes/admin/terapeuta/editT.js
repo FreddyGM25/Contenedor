@@ -8,14 +8,14 @@ module.exports = async function (req, res) {
     const tokenver = await TokenVerify(token)
     const admin = await userSchema.findById(tokenver._id)
     if (admin.rol == "admin") {
-      const user = await userSchema.findById(req.body.id)
+      const user = await userSchema.findById(req.params.id)
       if (user.rol != "terapeuta") return res.status(200).send({ response: "Error", message: "Este usuario no es terapeuta" })
       if (user.email != req.body.email) {
         const ver = await userSchema.findOne({ email: req.body.email })
         if (ver != null) return res.status(200).send({ response: "Error", message: "Este email ya existe" })
       }
       if (req.file) {
-        if (user.video.fileName != 0) {
+        if (user.video.fileName != undefined) {
           fs.unlink('./src/images/video/' + user.video.fileName)
         }
         await userSchema.updateOne({ _id: user._id }, {
@@ -23,15 +23,16 @@ module.exports = async function (req, res) {
             nombre: req.body.nombre,
             apellido: req.body.apellido,
             email: req.body.email,
+            password: req.body.password,
             telefono: req.body.telefono,
             cedula: req.body.cedula,
             especialidad: req.body.especialidad,
             descripcion: req.body.descripcion,
-            video: [{
+            video: {
               fileName: req.file.filename,
               filePath: `${process.env.URLB}/video/${req.file.filename}`,
               fileType: req.file.mimetype
-            }]
+            }
           }
         })
       }

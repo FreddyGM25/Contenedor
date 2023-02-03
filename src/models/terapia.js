@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const citaSchema = mongoose.Schema({
+const terapiaSchema = mongoose.Schema({
     nombre:{
         type:String,
         required:true
@@ -21,4 +21,4 @@ const citaSchema = mongoose.Schema({
 {timestamps: true}
 )
 
-module.exports = mongoose.model('Cita', citaSchema)
+module.exports = mongoose.model('Terapia', terapiaSchema)

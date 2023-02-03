@@ -18,9 +18,9 @@ module.exports = async function (req, res) {
                             isFirst: false
                         }
                     })
-                    return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: user.rol, token: token, isFirst: true })
+                    return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: user.rol, token: token, isFirst: true, data:user })
                 }
-                return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: user.rol, token: token, isFirst: false })
+                return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: user.rol, token: token, isFirst: false, data:user })
             }
             if (user.rol == "admin") {
                 const token = await TokenAssign(user)

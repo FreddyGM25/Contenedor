@@ -7,8 +7,9 @@ const upload = multer()
 router.get('/admin/seep', require('./admin/paciente/seeP'))
 router.get('/admin/seet', require('./admin/terapeuta/seeT'))
 router.get('/admin/seete', require('./admin/terapias/seeTe'))
+router.get('/user/see', require('./user/datauser'))
 
-router.post('/terapeuta/login', upload.none(), require('./user/login'))
+router.post('/login', upload.none(), require('./user/login'))
 router.post('/register', upload.none(), require('./user/register'))
 
 router.post('/admin/createp', upload.none(), require('./admin/paciente/createP'))

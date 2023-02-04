@@ -8,6 +8,7 @@ router.get('/admin/seep', require('./admin/paciente/seeP'))
 router.get('/admin/seet', require('./admin/terapeuta/seeT'))
 router.get('/admin/seete', require('./admin/terapias/seeTe'))
 router.get('/user/see', require('./user/datauser'))
+router.get('/user/datanum', require('./terapeutas/numD'))
 
 router.post('/login', upload.none(), require('./user/login'))
 router.post('/register', upload.none(), require('./user/register'))

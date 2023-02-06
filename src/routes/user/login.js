@@ -25,7 +25,7 @@ module.exports = async function (req, res) {
             if (user.rol == "admin") {
                 const token = await TokenAssign(user)
                 res.cookie('token', token, { httpOnly: true });
-                return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: user.rol, token: token })
+                return res.status(200).send({ response: "Success", message: 'Inicio sesion', rol: user.rol, token: token, data:user })
             }
         } else {
             return res.status(200).send({ response: "Error", message: 'Active su cuenta primero, revise su correo electronico' })

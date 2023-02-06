@@ -14,28 +14,6 @@ module.exports = async function (req, res) {
         const ver = await userSchema.findOne({ email: req.body.email })
         if (ver != null) return res.status(200).send({ response: "Error", message: "Este email ya existe" })
       }
-      if (req.file) {
-        if (user.video.fileName != undefined) {
-          fs.unlink('./src/images/video/' + user.video.fileName)
-        }
-        await userSchema.updateOne({ _id: user._id }, {
-          $set: {
-            nombre: req.body.nombre,
-            apellido: req.body.apellido,
-            email: req.body.email,
-            password: req.body.password,
-            telefono: req.body.telefono,
-            cedula: req.body.cedula,
-            especialidad: req.body.especialidad,
-            descripcion: req.body.descripcion,
-            video: {
-              fileName: req.file.filename,
-              filePath: `${process.env.URLB}/video/${req.file.filename}`,
-              fileType: req.file.mimetype
-            }
-          }
-        })
-      }
       await userSchema.updateOne({ _id: user._id }, {
         $set: {
           nombre: req.body.nombre,

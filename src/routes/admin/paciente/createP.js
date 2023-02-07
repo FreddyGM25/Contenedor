@@ -13,13 +13,15 @@ module.exports = async function (req, res) {
             const hashPassword = await bcrypt.hash(req.body.password, salt);
             req.body.password = hashPassword;
             const ver = await userSchema.findOne({ email: req.body.email })
-            if (ver == null) {
+            if (ver == null || ver == undefined) {
                 const user = new userSchema({
                     nombre: req.body.nombre,
                     apellido: req.body.apellido,
                     email: req.body.email,
-                    password: req.body.password,
+                    telefono: req.body.telefono,
                     isActive: false,
+                    isFirst: true,
+                    password: req.body.password,
                     imgpro: {
                         fileName: "defaultimage.png",
                         filePath: `${process.env.URLB}/serverimg/defaultimage.png`,
@@ -27,11 +29,11 @@ module.exports = async function (req, res) {
                     },
                     rol: "paciente"
                 });
-                await user.save()
                 const token = await TokenAssign(user)
                 const template = getTemplate(user.name, token, "", "", 1);
                 const resp = await sendEmail(user.email, template, 1, "");
                 if (resp == false) return res.status(200).send({ response: "Error", message: "Error al enviar el email" })
+                await user.save()
                 res.cookie('token', token, { httpOnly: true });
                 return res.status(200).send({ response: "Success", message: `${user.rol} creado correctamente` })
             } else {

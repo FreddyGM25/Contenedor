@@ -15,6 +15,7 @@ router.get('/user/datanum', require('./terapeutas/numD'))
 
 router.post('/login', upload.none(), require('./user/login'))
 router.post('/register', upload.none(), require('./user/register'))
+router.post('/user/create', upload.none(), require('./pacientes/Crearc'))
 
 router.post('/admin/createp', upload.none(), require('./admin/paciente/createP'))
 router.post('/admin/createt', uploadFile('video').single('video'), require('./admin/terapeuta/createT'))
@@ -23,6 +24,8 @@ router.put('/admin/editpi/:id', upload.none(), require('./admin/paciente/editifn
 router.put('/admin/editp/:id', upload.none(), require('./admin/editpass'))
 router.put('/admin/editti/:id', upload.none(), require('./admin/terapeuta/editinfoT'))
 router.put('/admin/edittv/:id', uploadFile('video').single('video'), require('./admin/terapeuta/editvideoT'))
+
+router.put('/admin/edittei/:id', upload.none(), require('./admin/terapia/editTe'))
 
 router.put('/admin/status/:id', upload.none(), require('./admin/terapeuta/changeStatus'))
 

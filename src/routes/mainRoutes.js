@@ -12,6 +12,8 @@ router.get('/admin/seet/:id', require('./admin/terapeuta/seeOne'))
 router.get('/admin/seete/:id', require('./admin/terapia/seeOne'))
 router.get('/user/see', require('./user/datauser'))
 router.get('/user/datanum', require('./terapeutas/numD'))
+router.get('/user/valid', require('./user/ActiveUser'))
+router.get('/user/seec', require('./pacientes/datacita'))
 
 router.post('/login', upload.none(), require('./user/login'))
 router.post('/register', upload.none(), require('./user/register'))

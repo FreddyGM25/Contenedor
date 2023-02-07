@@ -29,7 +29,7 @@ module.exports = async function (req, res) {
         if (resp == false) return res.status(200).send({ response: "Error", message: "Error al enviar el email" })
         await user.save()
         res.cookie('token', token, { httpOnly: true });
-        return res.status(200).send({ response: "Success", message: `${user.rol} creado correctamente` })
+        return res.status(200).send({ response: "Success", message: `${user.rol} creado correctamente`, token:token})
     } else {
         return res.status(200).send({ response: "Error", message: "El usuario ya existe" })
     }

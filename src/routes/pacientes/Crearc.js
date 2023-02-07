@@ -10,7 +10,7 @@ module.exports = async function (req, res) {
         const paciente = await userSchema.findById(tokenver._id)
         if (paciente.rol == "paciente") {
             const ver = await citaSchema.findOne({ terapeuta: req.body.terapeuta, paciente: req.body.paciente, fecha: req.body.fecha })
-            if (ver != null) return res.status(200).send({ response: "Error", message: 'Esta hora esta ocupada' })
+            if (ver != null) return res.status(200).send({ response: "Error", message: 'Esta fecha esta ocupada' })
             const terapeuta = await userSchema.findById(req.body.terapeuta)
             const cita = new citaSchema({
                 terapeuta: terapeuta._id,

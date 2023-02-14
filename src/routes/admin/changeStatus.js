@@ -1,8 +1,9 @@
-const userSchema = require('../../../models/usuario')
-const { TokenVerify } = require('../../../middleware/autentication')
+const userSchema = require('../../models/usuario')
+const { TokenVerify } = require('../../middleware/autentication')
 const fs = require('fs').promises
 
 module.exports = async function (req, res) {
+    if (req.headers.authorization == null || req.headers.authorization == undefined) return res.status(200).send({ response: "Error", message: "No existe Autorizacion" })
     const token = req.headers.authorization.split(' ').pop()
     if (token != "null") {
         const tokenver = await TokenVerify(token)

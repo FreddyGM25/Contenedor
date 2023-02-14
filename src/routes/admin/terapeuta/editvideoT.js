@@ -10,6 +10,7 @@ module.exports = async function (req, res) {
         if (admin.rol == "admin") {
             const user = await userSchema.findById(req.params.id)
             if (req.file) {
+                fs.unlink('./src/images/video/' + user.video.fileName)
                 await userSchema.updateOne({ _id: user._id }, {
                     $set: {
                         video: {

@@ -16,6 +16,13 @@ const terapiaSchema = mongoose.Schema({
     precio:{
         type:Number,
         required:true
+    },
+    idterapeuta:{
+        type: mongoose.Types.ObjectId,
+        required:true
+    },
+    idprecio:{
+        type:String
     }
 },
 {timestamps: true}

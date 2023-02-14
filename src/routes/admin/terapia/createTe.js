@@ -1,6 +1,7 @@
 const userSchema = require('../../../models/usuario')
 const terapiaSchema = require('../../../models/terapia')
 const { TokenVerify } = require('../../../middleware/autentication')
+const stripe = require('stripe')(process.env.KEY_STRIPE)
 
 module.exports = async function (req, res) {
     const token = req.headers.authorization.split(' ').pop()
@@ -8,11 +9,22 @@ module.exports = async function (req, res) {
         const tokenver = await TokenVerify(token)
         const admin = await userSchema.findById(tokenver._id)
         if (admin.rol == "admin") {
+            const product = await stripe.products.create({
+                name: req.body.nombre,
+                description: req.body.descripcion,
+            })
+            const price = await stripe.prices.create({
+                product: product.id,
+                unit_amount: `${req.body.precio}00`,
+                currency: 'usd',
+            });
             const terapia = new terapiaSchema({
                 nombre: req.body.nombre,
                 tipo: req.body.tipo,
                 cantidad: req.body.cantidad,
-                precio: req.body.precio
+                precio: req.body.precio,
+                idterapeuta: req.body.idterapeuta,
+                idprecio: price.id
             })
             await terapia.save()
             return res.status(200).send({ response: "Success", message: "Se creo la terapia correctamente" })

@@ -28,9 +28,6 @@ const userSchema = mongoose.Schema({
         },
         fileType: {
             type: String,
-        },
-        fileSize: {
-            type: String,
         }
     },
     rol: {

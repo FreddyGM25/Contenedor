@@ -40,6 +40,14 @@ router.put('/admin/status/:id', upload.none(), require('./admin/changeStatus'))
 router.put('/admin/editpub/:id', upload.none(), require('./admin/blog/updateP'))
 router.put('/admin/editpubi/:id', uploadFile('post').single('img'), require('./admin/blog/updatePI'))
 
+router.put('/terapeuta/editi', upload.none(), require('./terapeutas/editinfo'))
+router.put('/terapeuta/editpass', upload.none(), require('./terapeutas/editpass'))
+router.put('/terapeuta/editimg', uploadFile('profile').single('imgpro'), require('./terapeutas/editimg'))
+router.put('/terapeuta/editv', uploadFile('video').single('video'), require('./terapeutas/editvideo'))
+
+router.put('/paciente/editi', upload.none(), require('./pacientes/editinfo'))
+router.put('/paciente/editpass', upload.none(), require('./pacientes/editpass'))
+router.put('/paciente/editimg', uploadFile('profile').single('imgpro'), require('./pacientes/editimg'))
 
 
 router.delete('/admin/remove/:id', upload.none(), require('./admin/remove'))

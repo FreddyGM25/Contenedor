@@ -3,26 +3,29 @@ const mongoose = require("mongoose")
 const citaSchema = mongoose.Schema({
     terapeuta: {
         type: mongoose.Types.ObjectId,
-        required:true
+        required: true
     },
     nomt: {
         type: String,
-        required:true
+        required: true
     },
     paciente: {
         type: mongoose.Types.ObjectId,
-        required:true
+        required: true
     },
     nomp: {
         type: String,
-        required:true
+        required: true
+    },
+    idterapia: {
+        type: mongoose.Types.ObjectId
     },
     fecha: {
         type: Date,
-        required:true
+        required: true
     }
 },
-{timestamps: true}
+    { timestamps: true }
 )
 
 module.exports = mongoose.model('Cita', citaSchema)

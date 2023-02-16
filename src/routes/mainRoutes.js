@@ -16,6 +16,9 @@ router.get('/user/see', require('./user/datauser'))
 router.get('/user/datanum', require('./terapeutas/numD'))
 router.get('/user/valid', require('./user/ActiveUser'))
 router.get('/user/seec', require('./pacientes/datacita'))
+router.get('/terapeuta/citas', require('./terapeutas/citas'))
+router.get('/terapeuta/seete', require('./terapeutas/seeTe'))
+router.get('/terapeuta/seete/:id', require('./terapeutas/seeOne'))
 
 router.post('/login', upload.none(), require('./user/login'))
 router.post('/register', upload.none(), require('./user/register'))
@@ -27,6 +30,10 @@ router.post('/admin/createt', uploadFile('video').single('video'), require('./ad
 router.post('/admin/createte', upload.none(), require('./admin/terapia/createTe'))
 
 router.post('/admin/createblog', uploadFile('post').single('img'), require('./admin/blog/createB'))
+
+router.post('/terapeuta/createte', upload.none(), require('./terapeutas/createTe'))
+
+router.post('/filtro/hora', upload.none(), require('./pacientes/filtrohora'))
 
 router.put('/admin/editpi/:id', upload.none(), require('./admin/paciente/editifnoP'))
 router.put('/admin/editp/:id', upload.none(), require('./admin/editpass'))
@@ -44,6 +51,7 @@ router.put('/terapeuta/editi', upload.none(), require('./terapeutas/editinfo'))
 router.put('/terapeuta/editpass', upload.none(), require('./terapeutas/editpass'))
 router.put('/terapeuta/editimg', uploadFile('profile').single('imgpro'), require('./terapeutas/editimg'))
 router.put('/terapeuta/editv', uploadFile('video').single('video'), require('./terapeutas/editvideo'))
+router.put('/terapeuta/editte/:id', upload.none(), require('./terapeutas/editTe'))
 
 router.put('/paciente/editi', upload.none(), require('./pacientes/editinfo'))
 router.put('/paciente/editpass', upload.none(), require('./pacientes/editpass'))
@@ -53,5 +61,7 @@ router.put('/paciente/editimg', uploadFile('profile').single('imgpro'), require(
 router.delete('/admin/remove/:id', upload.none(), require('./admin/remove'))
 router.delete('/admin/removete/:id', upload.none(), require('./admin/terapia/removeTe'))
 router.delete('/admin/removepub/:id', upload.none(), require('./admin/blog/deleteblog'))
+
+router.delete('/terapeuta/removete/:id', upload.none(), require('./terapeutas/removeTe'))
 
 module.exports = router

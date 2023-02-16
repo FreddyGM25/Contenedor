@@ -73,6 +73,12 @@ const userSchema = mongoose.Schema({
         fileType: {
             type: String,
         }
+    },
+    horai: {
+        type: String
+    },
+    horaf: {
+        type: String
     }
 },
     { timestamps: true }

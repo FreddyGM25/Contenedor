@@ -1,14 +1,14 @@
-const userSchema = require('../../../models/usuario')
-const terapiaSchema = require('../../../models/terapia')
-const { TokenVerify } = require('../../../middleware/autentication')
+const userSchema = require('../../models/usuario')
+const terapiaSchema = require('../../models/terapia')
+const { TokenVerify } = require('../../middleware/autentication')
 const stripe = require('stripe')(process.env.KEY_STRIPE)
 
 module.exports = async function (req, res) {
     const token = req.headers.authorization.split(' ').pop()
     if (token != "null") {
         const tokenver = await TokenVerify(token)
-        const admin = await userSchema.findById(tokenver._id)
-        if (admin.rol == "admin") {
+        const user = await userSchema.findById(tokenver._id)
+        if (user.rol == "terapeuta") {
             const terapia = await terapiaSchema.findById(req.params.id)
             const price = await stripe.prices.retrieve(
                 terapia.idprecio
@@ -42,7 +42,7 @@ module.exports = async function (req, res) {
             })
             return res.status(200).send({ response: "Success", message: "Se actualizo la terapia correctamente" })
         } else {
-            return res.status(200).send({ response: "Error", message: "Este es un usuario normal" })
+            return res.status(200).send({ response: "Error", message: "Este no es un usuario terapeuta" })
         }
     } else {
         return res.status(200).send({ response: "Error", message: "Esta operacion requiere autenticacion" })

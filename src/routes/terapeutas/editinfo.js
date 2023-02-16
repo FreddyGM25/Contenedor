@@ -21,6 +21,8 @@ module.exports = async function (req, res) {
                     cedula: req.body.cedula,
                     especialidad: req.body.especialidad,
                     descripcion: req.body.descripcion,
+                    horai: req.body.horai,
+                    horaf: req.body.horaf
                 }
             })
             return res.status(200).send({ response: "Success", message: "Cambios guardados correctamente" })

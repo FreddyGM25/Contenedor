@@ -12,17 +12,20 @@ module.exports = async function (req, res) {
                 const ver = await userSchema.findOne({ email: req.body.email })
                 if (ver != null) return res.status(200).send({ response: "Error", message: "Este email ya existe" })
             }
+            const especialidad = req.body.especialidad.split(", "||",")
             await userSchema.updateOne({ _id: user._id }, {
                 $set: {
                     nombre: req.body.nombre,
                     apellido: req.body.apellido,
                     email: req.body.email,
                     telefono: req.body.telefono,
-                    cedula: req.body.cedula,
-                    especialidad: req.body.especialidad,
+                    identificacion: req.body.identificacion,
+                    especialidad: especialidad,
                     descripcion: req.body.descripcion,
+                    añose: req.body.añose,
                     horai: req.body.horai,
-                    horaf: req.body.horaf
+                    horaf: req.body.horaf,
+                    valorh: req.body.valorh
                 }
             })
             return res.status(200).send({ response: "Success", message: "Cambios guardados correctamente" })

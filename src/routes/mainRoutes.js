@@ -21,7 +21,8 @@ router.get('/terapeuta/seete', require('./terapeutas/seeTe'))
 router.get('/terapeuta/seete/:id', require('./terapeutas/seeOne'))
 
 router.post('/login', upload.none(), require('./user/login'))
-router.post('/register', upload.none(), require('./user/register'))
+router.post('/registerp', upload.none(), require('./user/registerP'))
+router.post('/registert', upload.none(), require('./user/registerT'))
 router.post('/user/create', upload.none(), require('./pacientes/Crearc'))
 
 router.post('/admin/createp', upload.none(), require('./admin/paciente/createP'))
@@ -33,7 +34,9 @@ router.post('/admin/createblog', uploadFile('post').single('img'), require('./ad
 
 router.post('/terapeuta/createte', upload.none(), require('./terapeutas/createTe'))
 
+router.post('/filtro/preferencia', upload.none(), require('./pacientes/filtropref'))
 router.post('/filtro/hora', upload.none(), require('./pacientes/filtrohora'))
+router.post('/preferencias', upload.none(), require('./pacientes/preferencia'))
 
 router.put('/admin/editpi/:id', upload.none(), require('./admin/paciente/editifnoP'))
 router.put('/admin/editp/:id', upload.none(), require('./admin/editpass'))

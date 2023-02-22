@@ -42,9 +42,9 @@ const userSchema = mongoose.Schema({
         type: Boolean,
         required: true
     },
-    especialidad: {
+    especialidad: [{
         type: String
-    },
+    }],
     fechanac: {
         type: Date,
     },
@@ -57,8 +57,11 @@ const userSchema = mongoose.Schema({
     telefono: {
         type: Number
     },
-    cedula: {
-        type: Number
+    identificacion: {
+        type: String
+    },
+    tarjetap: {
+        type: String
     },
     descripcion: {
         type: String
@@ -78,6 +81,18 @@ const userSchema = mongoose.Schema({
         type: String
     },
     horaf: {
+        type: String
+    },
+    monto: {
+        type: Number
+    },
+    añose: {
+        type: Number
+    },
+    valorh: {
+        type: Number
+    },
+    genero: {
         type: String
     }
 },

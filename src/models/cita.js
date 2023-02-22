@@ -17,12 +17,22 @@ const citaSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    idterapia: {
-        type: mongoose.Types.ObjectId
+    numta: {
+        type: Number
     },
-    fecha: {
+    numtf: {
+        type: Number
+    },
+    fechai: {
         type: Date,
         required: true
+    },
+    fechaf: {
+        type: Date,
+        required: true
+    },
+    idpago: {
+        type: mongoose.Types.ObjectId
     }
 },
     { timestamps: true }

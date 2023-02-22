@@ -15,6 +15,9 @@ module.exports = async function (req, res) {
                     isActive: !user.isActive
                 }
             })
+            const template = getTemplate(user.name, user.apellido, process.env.URLF, 1);
+            const resp = await sendEmail(user.email, template, 1);
+            if (resp == false) return res.status(200).send({ response: "Error", message: "Error al enviar el email" })
             return res.status(200).send({ response: "Success", message: "Estados cambiados correctamente" })
         } else {
             return res.status(200).send({ response: "Error", message: "Este es un usuario normal" })

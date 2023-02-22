@@ -1,17 +1,21 @@
 const mongoose = require("mongoose")
 
 const blogSchema = mongoose.Schema({
-    titulo:{
-        type:String,
-        required:true
+    titulo: {
+        type: String,
+        required: true
     },
-    cuerpo:{
-        type:String,
-        required:true
+    cuerpo: {
+        type: String,
+        required: true
     },
-    autor:{
-        type:String,
-        required:true
+    descripcion: {
+        type: String,
+        required: true
+    },
+    autor: {
+        type: String,
+        required: true
     },
     img: {
         fileName: {
@@ -28,7 +32,7 @@ const blogSchema = mongoose.Schema({
         }
     }
 },
-{timestamps: true}
+    { timestamps: true }
 )
 
 module.exports = mongoose.model('Blog', blogSchema)

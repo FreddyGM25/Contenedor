@@ -12,6 +12,7 @@ module.exports = async function (req, res) {
                 titulo: req.body.titulo,
                 cuerpo: req.body.cuerpo,
                 autor: req.body.autor,
+                descripcion: req.body.descripcion,
                 img: {
                     fileName: req.file.filename,
                     filePath: `${process.env.URLB}/post/${req.file.filename}`,

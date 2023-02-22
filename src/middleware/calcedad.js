@@ -1,4 +1,4 @@
-async function calcularEdad (fechaNacimiento) {
+async function calcularEdad(fechaNacimiento) {
     const fechaActual = new Date();
     const anoActual = parseInt(fechaActual.getFullYear());
     const mesActual = parseInt(fechaActual.getMonth()) + 1;
@@ -10,6 +10,7 @@ async function calcularEdad (fechaNacimiento) {
     const diaNacimiento = parseInt(String(fechaNacimiento).substring(8, 10));
 
     let edad = anoActual - anoNacimiento;
+
     if (mesActual < mesNacimiento) {
         edad--;
     } else if (mesActual === mesNacimiento) {
@@ -20,4 +21,4 @@ async function calcularEdad (fechaNacimiento) {
     return edad;
 }
 
-module.exports = {calcularEdad}
+module.exports = { calcularEdad }

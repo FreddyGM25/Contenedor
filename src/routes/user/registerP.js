@@ -1,7 +1,5 @@
 const bcrypt = require('bcryptjs')
 const userSchema = require('../../models/usuario')
-const { TokenAssign } = require('../../middleware/autentication')
-const { getTemplate, sendEmail } = require('../../middleware/email')
 const { calcularEdad } = require('../../middleware/calcedad')
 
 module.exports = async function (req, res) {
@@ -31,7 +29,6 @@ module.exports = async function (req, res) {
             rol: "paciente"
         });
         await user.save()
-        res.cookie('token', token, { httpOnly: true });
         return res.status(200).send({ response: "Success", message: `${user.rol} creado correctamente`})
     } else {
         return res.status(200).send({ response: "Error", message: "El usuario ya existe" })
